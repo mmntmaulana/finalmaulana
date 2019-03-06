@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Registration{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+        <br/>
+        <div class="card-panel grey lighten-5">
+        <img class="centerimage" src="{% static 'images/django.png' %}">
+        <h4 class="header2 center" style="font-family:Century Gothic;">Sign Up</h4>
+        <br>
+        <div class="row">
+        <form class="col s12" action="{% url 'post:registration' %}" method="POST">
+            {% csrf_token %}
+            <p class="newtext">
+                {% for field in form %}
+                {{ field.label}}{{field}}
+                {{field.errors}}
+                {% endfor %}
+              </p>
+            
+            <button style="font-family:Century Gothic;" type="submit" class="right btn-large teal darken-4" >REGISTER<i class="material-icons right">send</i></button>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

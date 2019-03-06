@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block body %}
+<div class="container">
+    
+    <br>
+    <div class="row">
+        <div class="col s12">   
+            <div class="card-panel grey darken-4 z-depth-3">
+             <img class="centerimage" src="{% static 'images/django.png' %}">
+            <h4 class="header2 center" style="font-family:Century Gothic; color:white;">Log In</h4>
+            
+            <div class="row">
+            <form class="col s12" action="{% url 'post:login' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                <div class="input-field col s12">
+                    <input style="font-family:Century Gothic; color:white;" name="username" type="text" required>
+                    <label style="font-family:Century Gothic; color:white;" for="username">Username</label>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="input-field col s12">   
+                    <input style= "color:white;" type="password" name="password" required/>
+                    <label style="font-family:Century Gothic; color:white;" for="password">Password:</label>
+                </div>
+                </div>
+                <button style="font-family:Century Gothic;" type="submit" class="right btn-large teal darken-4" >LOGIN<i class="material-icons right">send</i></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+            <br/>
+            <div class="card-panel grey lighten-5">
+            <img class="centerimage" src="{% static 'images/django.png' %}">
+            <h4 class="header2 center" style="font-family:Century Gothic;">Details</h4>
+            <br>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="icon_prefix2" class="materialize-textarea" style="font-size:30px" readonly>{{post.title}}</textarea>
+                    <label for="icon_prefix2" class="grey-text">Title</label>      
+                </div>
+
+                <div class="input-field col s12">
+                    <textarea id="icon_prefix2" class="materialize-textarea" readonly>{{post.content}}</textarea>
+                    <label for="icon_prefix2" class="grey-text">Content</label>      
+                </div>
+
+                <div class="input-field col s12">
+                    <textarea id="icon_prefix2" class="materialize-textarea" readonly>{{post.date_created}}</textarea>
+                    <label for="icon_prefix2" class="grey-text">Date Created</label>      
+                </div>
+                {% if post.is_active %}
+                <div class="input-field col s12">
+                    <label>
+                    <input type="checkbox" class="filled-in" checked disabled/>
+                        <span>Is active?</span>
+                    </label>
+                </div>
+                {%endif%}
+                <div class="input-field col s12">
+                    <a href="{% url 'post:update' post.id %}" class="right yellow darken-1 btn-large black-text">Update</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

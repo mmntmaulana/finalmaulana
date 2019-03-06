@@ -1,0 +1,59 @@
+{% load static %}
+<html>
+  <head>
+    <title>
+      Final Project |
+      {% block title %}
+      {% endblock %}
+    </title>
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'post/materialize/css/materialize.min.css' %}">
+    {% block styles %}
+    {% endblock %}
+    <style>
+    nav ul li:hover {
+      opacity: 1;
+      background-color: gray;
+   }
+
+   .centerimage {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 15%;
+  }
+  </style>
+  </head>
+  <body class="grey lighten-2">
+  
+      <nav>
+          <div class="nav-wrapper grey darken-4">
+            <div class="container">
+            <a href="{% url 'post:index' %}" class="brand-logo" style="font-family:Century Gothic;"><img src="{% static 'images/django.png' %}" style="width: 5%;">&nbsp;Final Project</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              {% if request.user.is_authenticated %}
+                <li><a href="{% url 'post:logout' %}">Logout</a></li>
+              {% else %}
+                <li><a href="{% url 'post:login' %}">Login</a></li>
+                <li><a href="{% url 'post:registration' %}">Sign Up</a></li>
+              {% endif %}
+            </ul>
+          </div>
+          </div>
+        </nav>
+        <br>
+    <div class="container">
+           
+    {% block body %}
+    
+    {% endblock %}
+    {% block inbtn %}
+    
+    </div>
+    {% endblock %}
+    <script src="{% static 'post/materialize/js/materialize.min.js' %}"></script>
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>

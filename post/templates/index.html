@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Index{% endblock %}
+{% block body %}
+    {% if request.user.is_authenticated %}
+        
+        <div class="container">
+        <br>
+            <div class="row">
+                <div class="col s12">   
+                    <div class="card-panel grey darken-4 z-depth-3">
+                     <img class="centerimage" src="{% static 'images/django.png' %}">
+                    <h3 class="header2 center" style="font-family:Century Gothic; color:white;">Welcome {{user.first_name}} {{user.last_name}}</h3>
+                    <br>
+                    <div class="row center">
+                        <a href="{% url 'post:create' %}" class="btn-large z-depth-3"  style="background-color: #092e20">What's on your mind?<i class="material-icons right">textsms</i></a>
+                    </div>
+
+                    <div class="row">
+                    <div class="card-panel teal darken-4"><h4 class="center" style="font-family:Century Gothic; color:white;">POSTS</h4></div>
+                    {% for post in posts %}
+                    <div class="col s12 center"> 
+                        
+                          <div class="card white hoverable">
+                            <div class="card-content teal-text darken-4">
+                              <span class="card-title truncate" style="font-family:Arial"><b>{{ post.title }}</b></span>
+                            </div>
+                            <div class="card-action">
+                                {{ post.date_created.date }} <br><br>
+                                <a href="{% url 'post:detail' post.id %}" class="btn z-depth-2" style="background-color: #092e20">See Details</a>
+                           </div>
+                        </div>
+                    </div> 
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    {% else %}
+    <div class="container">
+    
+            <br>
+            <div class="row">
+                <div class="col s12">   
+                    <div class="card-panel grey darken-4 z-depth-3">
+                     <img class="centerimage" src="{% static 'images/django.png' %}">
+                    <h3 class="header2 center" style="font-family:Century Gothic; color:white;">Welcome to my Django Final Project</h3><br>
+                    <h5 class="header2 center" style="font-family:Century Gothic; color:white;">In Partial Fulfillment of the Requirements for the Degree of <br> Bachelor of Science in Information Technology</h5>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% block inbtn %}{% endblock %}
+{% endblock %}
